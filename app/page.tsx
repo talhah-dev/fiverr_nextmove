@@ -24,6 +24,7 @@ import Questions from '@/components/Questions';
 import Footer from '@/components/Footer';
 import NextMove from '@/components/NextMove';
 import BusinessSection from '@/components/BusinessSection';
+import Loader from '@/components/Loader';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nextmove-digital.de'),
@@ -95,6 +96,8 @@ export default function Home() {
       <div className="md:block brightness-75 bg-black hidden">
         <VideoBackground />
       </div>
+
+      <Loader />
 
       <JsonLd data={schemas.enhancedFaqPage()} id="faq-page" />
 
