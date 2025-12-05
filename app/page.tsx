@@ -26,8 +26,10 @@ import NextMove from '@/components/NextMove';
 import BusinessSection from '@/components/BusinessSection';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nextmove-digital.de'),
   title: 'Immobilien Leads & Maklerkunden | Deutschland, Österreich & Schweiz',
-  description: 'Qualifizierte Leadgenerierung für Immobilienmakler und Finanzberater in Deutschland, Österreich und der Schweiz. Performance Marketing mit nachweisbarem ROI. Über 500 zufriedene Kunden.',
+  description:
+    'Qualifizierte Leadgenerierung für Immobilienmakler und Finanzberater in Deutschland, Österreich und der Schweiz. Performance Marketing mit nachweisbarem ROI. Über 500 zufriedene Kunden.',
   keywords: [
     'Immobilien Leads Deutschland',
     'Immobilien Leads Österreich',
@@ -42,19 +44,20 @@ export const metadata: Metadata = {
     'Qualifizierte Immobilien Leads',
     'Immobilien Akquise',
     'Performance Marketing Immobilienmakler',
-    'Digitales Marketing Finanzdienstleister'
+    'Digitales Marketing Finanzdienstleister',
   ],
   alternates: {
     canonical: 'https://nextmove-digital.de/',
     languages: {
       'de-DE': 'https://nextmove-digital.de/de',
       'de-AT': 'https://nextmove-digital.de/at',
-      'de-CH': 'https://nextmove-digital.de/ch'
-    }
+      'de-CH': 'https://nextmove-digital.de/ch',
+    },
   },
   openGraph: {
     title: 'Immobilien Leads & Maklerkunden | Deutschland, Österreich & Schweiz',
-    description: 'Qualifizierte Leadgenerierung in Deutschland, Österreich und der Schweiz mit nachweisbarem ROI. Performance Marketing für Immobilienmakler und Finanzberater.',
+    description:
+      'Qualifizierte Leadgenerierung in Deutschland, Österreich und der Schweiz mit nachweisbarem ROI. Performance Marketing für Immobilienmakler und Finanzberater.',
     url: 'https://nextmove-digital.de',
     siteName: 'NextMove Digital',
     locale: 'de_DE',
@@ -64,10 +67,25 @@ export const metadata: Metadata = {
         url: 'https://nextmove-digital.de/og-image-home.webp',
         width: 1200,
         height: 630,
-        alt: 'NextMove Digital - Immobilien Leads Deutschland, Österreich & Schweiz'
-      }
-    ]
-  }
+        alt: 'NextMove Digital - Immobilien Leads Deutschland, Österreich & Schweiz',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Immobilien Leads & Maklerkunden | NextMove Digital',
+    description:
+      'Lead-Generierung für Immobilienmakler & Finanzberater mit nachweisbarem ROI in DACH.',
+    images: ['https://nextmove-digital.de/og-image-home.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true
+    },
+  },
 };
 
 export default function Home() {

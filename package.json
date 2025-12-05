@@ -12,7 +12,7 @@
     "export": "echo 'No export command needed! Next.js 13+ uses output: export in next.config.js. Just run: npm run build' && echo 'The /out directory will be created automatically!'"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@elevenlabs/client": "^0.1.7",
