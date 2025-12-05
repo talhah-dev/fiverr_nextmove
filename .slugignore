@@ -1,0 +1,20 @@
+# Keep node_modules but remove unnecessary files
+.git
+.gitignore
+.env.local
+.eslintrc.json
+.next/cache
+node_modules/.cache
+.npm
+.eslintcache
+.turbo
+coverage
+dist
+build
+.vscode
+.idea
+*.log
+.DS_Store
+README.md
+docs/
+examples/

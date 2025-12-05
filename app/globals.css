@@ -1,0 +1,478 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: dark;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  background-color: #000000;
+}
+
+/* Global Font - Inter lokal gehostet für DSGVO-Konformität */
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Performance Optimierungen */
+* {
+  box-sizing: border-box;
+  /* CSS Containment für bessere Performance */
+  contain: layout style;
+}
+
+/* Containment exceptions für wichtige Layout-Elemente */
+body, html, main, section {
+  contain: none;
+}
+
+/* Optimiertes Scrolling für mobile Geräte */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Selective smooth scrolling only for navigation links */
+a[href^="#"] {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for specific elements only */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Flip-Websites Exception - Allow Framer Motion */
+.flip-websites {
+  contain: none !important;
+}
+
+.flip-websites * {
+  will-change: auto !important;
+}
+
+.flip-websites motion-div,
+.flip-websites [data-framer-motion] {
+  animation: initial !important;
+  transition: initial !important;
+  transform: initial !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: initial !important;
+  will-change: transform !important;
+}
+
+.flip-websites img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Mobile Performance Optimierungen */
+@media (max-width: 768px) {
+  /* GPU-beschleunigte Transformationen nur für notwendige Elemente */
+  .gpu-accelerated, motion-div, [data-framer-motion] {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  /* Reduzierte Animationen auf mobilen Geräten */
+  *:not(.animate-scroll):not(.animate-orbit):not(.animate-scroll-infinite) {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+    will-change: auto;
+  }
+  
+  /* Deaktiviere komplexe Effekte auf mobilen Geräten */
+  .blur-3xl {
+    filter: blur(32px) !important;
+  }
+  
+  .blur-2xl {
+    filter: blur(20px) !important;
+  }
+  
+  .blur-xl {
+    filter: blur(12px) !important;
+  }
+  
+  /* Stark reduzierte backdrop-blur */
+  .backdrop-blur-md {
+    backdrop-filter: blur(2px) !important;
+  }
+
+  /* Optimierte Box-Schatten */
+  [class*="shadow-"] {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Deaktiviere hover-Effekte auf Touch-Geräten - außer flip-websites */
+  .group:hover *:not(.flip-websites *),
+  *:hover:not(.flip-websites *) {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Deaktiviere alle Animationen auf mobilen Geräten - außer Logo-Scroll und pulse-orange */
+  .animate-orbit,
+  [class*="animate-"]:not(.animate-scroll-infinite):not(.animate-pulse-orange) {
+    animation: none !important;
+  }
+
+  /* Spezielle Motion-Komponenten deaktivieren - außer flip-websites */
+  [data-framer-motion]:not(.flip-websites *),
+  [class*="motion-"]:not(.flip-websites *) {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Explizite Ausnahme für flip-websites */
+  .flip-websites [data-framer-motion],
+  .flip-websites [class*="motion-"],
+  .flip-websites motion-div {
+    transform: initial !important;
+    transition: initial !important;
+    animation: initial !important;
+  }
+
+  /* Framer Motion Komponenten komplett deaktivieren - außer flip-websites */
+  div[style*="transform"]:not(.flip-websites *),
+  motion-div:not(.flip-websites *) {
+    transform: none !important;
+    transition: none !important;
+  }
+  /* Vereinfachte Glassmorphism-Effekte */
+  [class*="bg-gradient-to"]:not([class*="bg-clip-text"]) {
+    background: rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Optimierte Border-Effekte */
+  [class*="border-white/"] {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* Spezielle Regeln für Touch-Geräte - deaktiviert alle Hover- und Motion-Effekte */
+@media (hover: none) and (pointer: coarse) {
+  /* Alle Motion und Transform Effekte deaktivieren - außer Logo-Scroll, pulse-orange und flip-websites */
+  *:not(.animate-scroll-infinite):not(.animate-pulse-orange):not(.flip-websites *),
+  *:not(.animate-scroll-infinite):not(.animate-pulse-orange):not(.flip-websites *)::before,
+  *:not(.animate-scroll-infinite):not(.animate-pulse-orange):not(.flip-websites *)::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  /* Framer Motion spezifisch - außer flip-websites */
+  [data-framer-motion]:not(.flip-websites *),
+  motion-div:not(.flip-websites *),
+  motion-h1:not(.flip-websites *),
+  motion-h2:not(.flip-websites *),
+  motion-p:not(.flip-websites *),
+  div[style*="transform"]:not(.flip-websites *) {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Hover-Effekte komplett deaktivieren - außer flip-websites */
+  .group:hover *:not(.flip-websites *),
+  *:hover:not(.flip-websites *) {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Optimiertes Scrolling wird bereits oben definiert */
+
+/* Container Optimierungen für kleinere Bildschirme */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 90% !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 95% !important;
+  }
+}
+
+/* Pulse Animation Optimierung */
+@keyframes pulse-orange {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-orange {
+  animation: pulse-orange 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slide Animations für bessere Performance */
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-right {
+  animation: slide-right 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Optimierte Shine Animation */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  20%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Glassmorphism Optimierungen */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Typography - Hero optimiert */
+@media (max-width: 1536px) {
+  /* 2XL */
+  section h1 span:first-child { font-size: clamp(3rem, 5vw, 6rem) !important; }
+  section h1 span:last-child { font-size: clamp(2.5rem, 4vw, 5rem) !important; }
+  section h2 { font-size: clamp(1.25rem, 2vw, 2rem) !important; }
+}
+
+@media (max-width: 1366px) {
+  /* XL */
+  section h1 span:first-child { font-size: clamp(2.5rem, 4.5vw, 5rem) !important; }
+  section h1 span:last-child { font-size: clamp(2rem, 3.5vw, 4rem) !important; }
+  section h2 { font-size: clamp(1.125rem, 1.8vw, 1.75rem) !important; }
+
+  /* Allgemeine Headings */
+  h3 { font-size: clamp(1.5rem, 3vw, 2.5rem) !important; }
+  h4 { font-size: clamp(1.25rem, 2.5vw, 2rem) !important; }
+  h5 { font-size: clamp(1.125rem, 2vw, 1.75rem) !important; }
+  h6 { font-size: clamp(1rem, 1.5vw, 1.5rem) !important; }
+}
+
+@media (max-width: 1024px) {
+  /* LG */
+  section h1 span:first-child { font-size: clamp(2.25rem, 4vw, 4.5rem) !important; }
+  section h1 span:last-child { font-size: clamp(1.75rem, 3vw, 3.5rem) !important; }
+  section h2 { font-size: clamp(1rem, 1.6vw, 1.5rem) !important; }
+}
+
+@media (max-width: 768px) {
+  /* MD */
+  section h1 span:first-child { font-size: clamp(2rem, 6vw, 3.5rem) !important; }
+  section h1 span:last-child { font-size: clamp(1.5rem, 5vw, 2.75rem) !important; }
+  section h2 { font-size: clamp(1rem, 3vw, 1.5rem) !important; }
+}
+
+@media (max-width: 640px) {
+  /* SM */
+  section h1 span:first-child { font-size: clamp(1.75rem, 7vw, 2.5rem) !important; }
+  section h1 span:last-child { font-size: clamp(1.25rem, 5.5vw, 2rem) !important; }
+  section h2 { font-size: clamp(0.9rem, 3.5vw, 1.25rem) !important; }
+}
+
+/* Button Hover Optimierungen */
+.btn-orange-glow:hover {
+  background: rgba(255, 85, 0, 0.25) !important;
+  border-color: rgba(255, 85, 0, 0.8) !important;
+  box-shadow: 0 0 30px rgba(255, 85, 0, 0.6) !important;
+}
+
+/* Moving Cards Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Endlose Logo Animation - optimiert für perfekte Schleife */
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 45s linear infinite;
+}
+
+/* LinkedIn Orbiting Animation */
+@keyframes orbit {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(calc(var(--angle) * 1deg)) translateX(var(--radius)) rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(calc(var(--angle) * 1deg + 360deg)) translateX(var(--radius)) rotate(calc(var(--angle) * -1deg - 360deg));
+  }
+}
+
+.animate-orbit {
+  animation: orbit var(--duration) linear infinite;
+  transform-origin: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+/* Modern Marketing Font for Statistics Numbers */
+.stats-number {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-feature-settings: 'tnum' 1, 'lnum' 1 !important; /* Tabular and lining numbers */
+  letter-spacing: -0.02em !important;
+  background: linear-gradient(135deg, white 0%, #ff8040 50%, #ff5500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+.stats-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Orange underline effect for highlighted text */
+.orange-underline {
+  position: relative !important;
+  display: inline-block !important;
+}
+
+.orange-underline::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -4px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: rgba(255, 85, 0, 0.4) !important;
+  border-radius: 2px !important;
+}
+
+@media (min-width: 768px) {
+  .orange-underline::after {
+    bottom: -3px !important;
+    height: 3px !important;
+  }
+}
+
+/* 3D Perspective and Line Clamp Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* GIF Loading Performance Optimierungen */
+@media (max-width: 768px) {
+  /* Optimierte GIF-Loading für mobile Geräte */
+  img[src*=".gif"] {
+    will-change: opacity;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Reduzierte Animationen für GIFs auf mobilen Geräten */
+  img[src*=".gif"]:not(.no-mobile-optimization) {
+    image-rendering: optimizeSpeed;
+    -webkit-image-rendering: optimizeSpeed;
+    -moz-image-rendering: optimizeSpeed;
+    -o-image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-filter: brightness(1.02) contrast(0.98);
+    filter: brightness(1.02) contrast(0.98);
+  }
+}
+
+/* GIF Fade-in Animation */
+@keyframes gif-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gif-loading {
+  animation: gif-fade-in 0.6s ease-out forwards;
+}
