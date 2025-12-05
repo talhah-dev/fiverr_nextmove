@@ -8,6 +8,8 @@ import MobileScrollOptimizer from '@/components/MobileScrollOptimizer';
 import CookieBanner from '@/components/CookieBanner';
 import { Suspense } from 'react';
 import Analytics from './analytics';
+import Loader from '@/components/Loader';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export const metadata: Metadata = {
   title: {
@@ -259,7 +261,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-                name: 'Nextmove Digital',
+              name: 'Nextmove Digital',
               image: 'https://nextmove-digital.de/logo-nextmove.jpeg',
               '@id': 'https://nextmove-digital.de',
               url: 'https://nextmove-digital.de',
@@ -297,6 +299,10 @@ export default function RootLayout({
         <Suspense>
           <Analytics />
         </Suspense>
+        <Loader />
+        <ScrollToTop />
+
+
         {/* Mobile Scroll Optimizer */}
         <MobileScrollOptimizer />
         {/* Scroll Position Manager */}
