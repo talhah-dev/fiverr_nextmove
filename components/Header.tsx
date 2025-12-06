@@ -1,235 +1,122 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const menuItems = [
-  { name: 'Startseite', href: '#top' },
-  { name: 'Unsere Lösung', href: '#solutions' },
-  { name: 'Warum wir?', href: '#why-us' },
-  { name: 'Referenzen', href: '#testimonials' },
-  { name: 'Unser Prozess', href: '#timeline' },
+  { name: "Startseite", href: "#top" },
+  { name: "Unsere Lösung", href: "#solutions" },
+  { name: "Warum wir?", href: "#why-us" },
+  { name: "Referenzen", href: "#testimonials" },
+  { name: "Unser Prozess", href: "#timeline" },
 ];
 
 export const Header = () => {
-  const [menuState, setMenuState] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOnWhiteSection, setIsOnWhiteSection] = useState(false);
-  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const whiteSections = document.querySelectorAll('.bg-white');
-      const headerHeight = 100;
-      let overWhiteSection = false;
-      
-      whiteSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= headerHeight && rect.bottom >= 0) {
-          overWhiteSection = true;
-        }
-      });
-      
-      setIsOnWhiteSection(overWhiteSection);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleCtaClick = () => {
-    window.open('https://lunacal.ai/team/nextmove-digital/meeting', '_blank');
+  const handleNavClick = (href: string) => {
+    setOpen(false);
+    if (href === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleNavClick = (href: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    
-    if (href === '#top') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    
-    setMenuState(false);
-  };
+  const handleCTA = () =>
+    window.open("https://lunacal.ai/team/nextmove-digital/meeting", "_blank");
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-[100] px-4 sm:px-6 lg:px-8">
-      <div className={cn(
-        'mx-auto mt-3 w-full lg:transition-none transition-all duration-300',
-        isScrolled
-          ? isOnWhiteSection
-            ? 'max-w-5xl bg-black/90 backdrop-blur-xl rounded-2xl px-4 py-2 border-2 border-white/30 shadow-[0_0_20px_rgba(0,0,0,0.5)]'
-            : 'max-w-5xl bg-black/30 backdrop-blur-xl rounded-2xl px-4 py-2 glass-effect border-2 border-[#ff5500]/60 shadow-[0_0_25px_rgba(255,85,0,0.5)]'
-          : 'max-w-6xl bg-transparent px-4 py-3'
-      )}>
-        <div className="flex items-center justify-between">
-          {/* Logo - direkt in der Navigation */}
-          <Link href="/" className="flex-shrink-0 inline-block">
-            <Image
-              src="/Logo-NMC-2.webp"
-              alt="NextMove Logo"
-              width={400}
-              height={400}
-              className={cn(
-                'w-auto lg:transition-none transition-all duration-300',
-                isScrolled
-                  ? 'h-5 sm:h-6'
-                  : 'h-6 sm:h-7 md:h-8'
-              )}
-              style={{
-                filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.9))'
-              }}
-              priority
-            />
-          </Link>
+    <header
+      className={cn(
+        "fixed top-0 mt-5 left-0 w-full z-[100] transition-all duration-300",
+        isScrolled ? "py-2 backdrop-blu r-xl bg- black/40 shado w-lg" : "py-4 bg-transparent"
+      )}
+    >
+      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
 
-          {/* Desktop Navigation - zentriert */}
-          <nav className="hidden lg:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
-            {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                onClick={(e) => handleNavClick(item.href, e)}
-                className={cn(
-                  "transition-all duration-200 relative group cursor-pointer",
-                  isOnWhiteSection && isScrolled
-                    ? "text-white hover:text-gray-200"
-                    : "text-gray-200 hover:text-white"
-                )}
-              >
-                <span className="text-sm font-medium tracking-wide" 
-                      style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
-                  {item.name}
-                </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#ff8040] to-[#ff5500] transition-all duration-300 group-hover:w-full shadow-[0_0_5px_rgba(255,85,0,0.6)]"></span>
-              </a>
-            ))}
-          </nav>
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/Logo-NMC-2.webp"
+            width={180}
+            height={50}
+            alt="NextMove Logo"
+            className="h-8 w-auto drop-shadow-xl"
+            priority
+          />
+        </Link>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden lg:flex">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          {menuItems.map((item, i) => (
             <button
-              onClick={handleCtaClick}
-              className={cn(
-                'relative overflow-hidden lg:transition-none transition-all duration-300 font-semibold uppercase tracking-wider hover:scale-105',
-                isScrolled
-                  ? 'px-3 py-2 text-xs rounded-lg'
-                  : 'px-6 py-3 text-sm rounded-lg',
-                isOnWhiteSection && isScrolled ? '' : 'btn-orange-glow'
-              )}
-              style={
-                isOnWhiteSection && isScrolled
-                  ? {
-                      background: 'linear-gradient(135deg, rgba(255, 85, 0, 0.9) 0%, rgba(255, 85, 0, 1) 100%)',
-                      color: 'white',
-                      border: '2px solid rgba(255, 85, 0, 1)',
-                      boxShadow: '0 0 25px rgba(255, 85, 0, 0.6), inset 0 0 15px rgba(255, 85, 0, 0.2)',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                    }
-                  : {
-                      background: 'linear-gradient(135deg, rgba(255, 85, 0, 0.2) 0%, rgba(255, 85, 0, 0.3) 100%)',
-                      color: 'white',
-                      border: '2px solid rgba(255, 85, 0, 0.6)',
-                      boxShadow: '0 0 20px rgba(255, 85, 0, 0.4), inset 0 0 15px rgba(255, 85, 0, 0.1)',
-                      backdropFilter: 'blur(10px)',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                    }
-              }
+              key={i}
+              onClick={() => handleNavClick(item.href)}
+              className="text-white/90 hover:text-white transition relative group text-sm tracking-wide"
             >
-              <div 
-                className="absolute inset-0 -z-10"
-                style={{
-                  background: 'radial-gradient(circle at center, rgba(255, 85, 0, 0.7) 0%, rgba(255, 85, 0, 0.3) 40%, transparent 70%)',
-                  filter: 'blur(10px)',
-                  transform: 'scale(1.2)'
-                }}
-              />
-              
-              <span>
-                {isScrolled ? 'Beratung' : 'Kostenlose Beratung'}
-              </span>
+              {item.name}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-[#ff8040] to-[#ff5500] group-hover:w-full transition-all duration-300"></span>
             </button>
-          </div>
+          ))}
+        </nav>
 
-          {/* Mobile Menu Button */}
+        {/* Desktop CTA */}
+        <button
+          onClick={handleCTA}
+          className="hidden lg:block px-5 py-2 rounded-lg text-sm font-semibold uppercase tracking-wide 
+                     bg-gradient-to-r from-[#ff8040] to-[#ff5500] text-white shadow-lg hover:scale-105 
+                     transition-transform"
+        >
+          Beratung
+        </button>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden text-white p-2"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={cn(
+          "lg:hidden fixed left-0 right-0 bg-black/80 backdrop-blur-xl transition-all duration-300 overflow-hidden",
+          open ? "max-h-[350px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <div className="flex flex-col items-center py-6 space-y-5">
+          {menuItems.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => handleNavClick(item.href)}
+              className="text-white/90 hover:text-white text-base tracking-wide transition"
+            >
+              {item.name}
+            </button>
+          ))}
+
           <button
-            onClick={() => setMenuState(!menuState)}
-            className={cn(
-              "lg:hidden p-2 transition-colors",
-              isOnWhiteSection && isScrolled
-                ? "text-white hover:text-gray-300"
-                : "text-white hover:text-orange-400"
-            )}
-            style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))' }}
-            aria-label={menuState ? 'Menü schließen' : 'Menü öffnen'}
+            onClick={handleCTA}
+            className="mt-4 px-6 py-2 rounded-lg text-sm font-semibold uppercase tracking-wide 
+                       bg-gradient-to-r from-[#ff8040] to-[#ff5500] text-white shadow-lg transition hover:scale-105"
           >
-            {menuState ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            Beratung
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {menuState && (
-          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl p-6 mx-4 z-[110] shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
-            <div className="flex flex-col space-y-4">
-              {menuItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(item.href, e)}
-                  className="text-gray-200 hover:text-white transition-colors duration-200 relative group cursor-pointer"
-                >
-                  <span className="text-base font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
-                    {item.name}
-                  </span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#ff8040] to-[#ff5500] transition-all duration-300 group-hover:w-full shadow-[0_0_5px_rgba(255,85,0,0.6)]"></span>
-                </a>
-              ))}
-              
-              {/* Mobile CTA Button */}
-              <button 
-                onClick={() => {
-                  handleCtaClick();
-                  setMenuState(false);
-                }}
-                className="relative overflow-hidden px-5 py-2.5 text-sm font-semibold uppercase tracking-wide rounded-lg mt-4 transition-all duration-300 btn-orange-glow hover:scale-105"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 85, 0, 0.2) 0%, rgba(255, 85, 0, 0.3) 100%)',
-                  color: 'white',
-                  border: '2px solid rgba(255, 85, 0, 0.6)',
-                  boxShadow: '0 0 20px rgba(255, 85, 0, 0.4), inset 0 0 15px rgba(255, 85, 0, 0.1)',
-                  backdropFilter: 'blur(10px)',
-                  textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                }}
-              >
-                <div 
-                  className="absolute inset-0 -z-10"
-                  style={{
-                    background: 'radial-gradient(circle at center, rgba(255, 85, 0, 0.7) 0%, rgba(255, 85, 0, 0.3) 40%, transparent 70%)',
-                    filter: 'blur(10px)',
-                    transform: 'scale(1.1)'
-                  }}
-                />
-                
-                <span>Kostenlose Beratung</span>
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );

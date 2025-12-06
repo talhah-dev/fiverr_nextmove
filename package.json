@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start -p $PORT",
     "lint": "next lint",
     "reinstall-spline": "npm uninstall @splinetool/react-spline && npm install @splinetool/react-spline@2.2.6 --legacy-peer-deps",

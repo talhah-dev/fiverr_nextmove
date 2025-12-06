@@ -10,12 +10,10 @@ export const preferredRegion = ['fra1', 'dub1', 'arn1', 'cdg1'];
 // Static imports for critical components (no dynamic loading)
 import PainPoints from '@/components/PainPoints';
 import Solutions from '@/components/Solutions';
-import FlipWebsites from '@/components/unsere-loesung/flip-websites';
 import FailureReasons from '@/components/FailureReasons';
 import TestimonialVideo from '@/components/TestimonialVideo';
 import AdsDesign from '@/components/AdsDesign';
 import CaseStudySection from '@/components/CaseStudySection';
-import Team from '@/components/Team';
 import Timeline from '@/components/Timeline';
 import WhyUs from '@/components/WhyUs';
 import CTA from '@/components/CTA';
@@ -24,11 +22,7 @@ import Questions from '@/components/Questions';
 import Footer from '@/components/Footer';
 import NextMove from '@/components/NextMove';
 import BusinessSection from '@/components/BusinessSection';
-import Loader from '@/components/Loader';
-import ScrollToTop from '@/components/ScrollToTop';
-import Image from 'next/image';
 import { MovingLogos } from '@/components/ui/moving-cards';
-import { SmoothScroll } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nextmove-digital.de'),
@@ -153,7 +147,7 @@ export default function Home() {
 
       <div className="">
 
-        <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} />
+        {/* <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} /> */}
 
         <Header />
         <main className="relative flex min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
