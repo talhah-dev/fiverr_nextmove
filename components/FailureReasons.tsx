@@ -7,10 +7,10 @@ import { BsCalculator } from 'react-icons/bs';
 // Info-Icon Komponente mit Tooltip
 const InfoIcon = ({ tooltip }: { tooltip: string }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  
+
   return (
     <div className="relative inline-block ml-2">
-      <div 
+      <div
         className="w-4 h-4 rounded-full bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-xs font-semibold cursor-help hover:bg-orange-500/30 transition-colors duration-200"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
@@ -30,26 +30,26 @@ const InfoIcon = ({ tooltip }: { tooltip: string }) => {
 // Kupfer-Effekt Komponente für den Hintergrund
 const CopperBlurEffect = () => (
   <div className="absolute inset-0">
-    <svg 
-      className="blur-2xl md:blur-3xl filter opacity-30 md:opacity-40" 
-      style={{ filter: 'blur(80px)' }} 
-      width="100%" 
-      height="100%" 
-      viewBox="0 0 444 536" 
-      fill="none" 
+    <svg
+      className="blur-2xl md:blur-3xl filter opacity-30 md:opacity-40"
+      style={{ filter: 'blur(80px)' }}
+      width="100%"
+      height="100%"
+      viewBox="0 0 444 536"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path 
-        d="M374.558 127.891C290.893 33.7273 152.005 71.9567 95.2954 136.742C38.5854 201.527 -24.5696 384.971 59.0954 479.135C142.76 573.299 359.895 442.346 416.605 377.561C473.315 312.776 458.223 222.055 374.558 127.891Z" 
-        fill="url(#paint0_linear)" 
+      <path
+        d="M374.558 127.891C290.893 33.7273 152.005 71.9567 95.2954 136.742C38.5854 201.527 -24.5696 384.971 59.0954 479.135C142.76 573.299 359.895 442.346 416.605 377.561C473.315 312.776 458.223 222.055 374.558 127.891Z"
+        fill="url(#paint0_linear)"
       />
       <defs>
-        <linearGradient 
-          id="paint0_linear" 
-          x1="404.5" 
-          y1="100" 
-          x2="44.5" 
-          y2="436" 
+        <linearGradient
+          id="paint0_linear"
+          x1="404.5"
+          y1="100"
+          x2="44.5"
+          y2="436"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#ff8040" stopOpacity="0.3" />
@@ -159,10 +159,10 @@ const MarketingROICalculator = () => {
     setIsCalculating(true);
     setShowResults(false);
     setHasCalculated(true);
-    
+
     // Loading-Simulation - kürzer für bessere UX
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     // IST-Zustand berechnen
     const monatlicheWerbekosten = leadsProMonat * kostenProLead;
     const monatlicheZeitkosten = (stundenProWoche * 4.33) * stundensatz;
@@ -177,52 +177,52 @@ const MarketingROICalculator = () => {
       monatlicheUmsatz,
       gewinn
     });
-    
+
     // SOLL-Zustand berechnen (Standard-Fall)
     // 1. Neue Anzahl von Leads basierend auf gleichem Budget aber niedrigeren Kosten pro Lead
     let neueAnzahlLeads = Math.round(monatlicheWerbekosten / neueLeadKosten);
-    
+
     // 2. Verbesserte Abschlussquote durch qualifiziertere Leads (um 75% besser)
     let neueAbschlussquote = Math.min(abschlussquote * 1.75, 20); // Max 20%
-    
+
     // 3. Neuer Umsatz durch mehr und bessere Leads
     let neuerUmsatz = neueAnzahlLeads * (neueAbschlussquote / 100) * umsatzProAbschluss;
-    
+
     // 4. Gesparte Zeit (75% weniger Zeitaufwand)
     const gesparteStunden = stundenProWoche * 0.75 * 4.33; // monatlich
     const wertGesparteZeit = gesparteStunden * stundensatz;
-    
+
     // Neue Kosten berechnen (weniger Zeit, aber Agenturkosten)
     const verbleibendeZeitkosten = monatlicheZeitkosten * 0.25; // 75% weniger
-    const neueGesamtkosten = monatlicheWerbekosten + verbleibendeZeitkosten + agenturKosten; 
+    const neueGesamtkosten = monatlicheWerbekosten + verbleibendeZeitkosten + agenturKosten;
     let neuerGewinn = neuerUmsatz - neueGesamtkosten + wertGesparteZeit;
-    
+
     let umsatzDifferenz = neuerUmsatz - monatlicheUmsatz;
     let gewinnDifferenz = neuerGewinn - gewinn;
     let gewinnSteigerungProz = gewinn > 0 ? (gewinnDifferenz / gewinn) * 100 : 0;
-    
+
     // ROI-Daten initialisieren
     let gesamterReturn, nettogewinn, roi, faktor;
-    
+
     // HIER KOMMT DIE NEUE SICHERHEITS-PRÜFUNG
     // "Superstar-Fall": Wenn der neue Gewinn schlechter als der aktuelle Gewinn ist
     if (neuerGewinn < gewinn) {
       console.log("Superstar-Fall erkannt! Passe Berechnung an...");
-      
+
       // 1. Umsatz und Leads bleiben gleich - das bestehende System ist bereits sehr gut
       neuerUmsatz = monatlicheUmsatz;
       neueAnzahlLeads = leadsProMonat;
       neueAbschlussquote = abschlussquote;
-      
+
       // 2. Der Hauptgewinn kommt jetzt aus der gesparten Zeit
       neuerGewinn = monatlicheUmsatz - monatlicheWerbekosten - verbleibendeZeitkosten - agenturKosten;
-      
+
       // 3. Die ROI-Berechnung basiert nur auf der Zeitersparnis
       gesamterReturn = wertGesparteZeit;
       nettogewinn = gesamterReturn - agenturKosten;
       roi = (nettogewinn / agenturKosten) * 100;
       faktor = gesamterReturn / agenturKosten;
-      
+
       // Neue Differenzwerte berechnen
       umsatzDifferenz = 0; // Umsatz bleibt gleich
       gewinnDifferenz = neuerGewinn - gewinn;
@@ -255,7 +255,7 @@ const MarketingROICalculator = () => {
       roi,
       faktor
     });
-    
+
     setIsCalculating(false);
     setShowResults(true);
   };
@@ -304,9 +304,9 @@ const MarketingROICalculator = () => {
       {/* Additional floating blur orbs */}
       <div className="absolute top-1/4 left-1/4 w-24 md:w-32 h-24 md:h-32 rounded-full bg-white/5 blur-2xl md:blur-3xl z-15"></div>
       <div className="absolute bottom-1/3 right-1/4 w-32 md:w-40 h-32 md:h-40 rounded-full bg-orange-500/10 blur-2xl md:blur-3xl z-15"></div>
-      
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 lg:py-12 relative z-20">
-        <motion.div 
+        <motion.div
           ref={headingRef}
           className="max-w-4xl mx-auto text-center mb-12 lg:mb-14"
           initial={{ opacity: 0, y: 30 }}
@@ -314,7 +314,7 @@ const MarketingROICalculator = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-5">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl md:block hidden font-normal text-white mb-5">
             Berechnen Sie Ihren <span className="relative inline-block">
               <span className="text-white">Marketing-ROI</span>
               <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-2 sm:h-3 md:h-4 lg:h-5 bg-gradient-to-r from-[#ff8040] to-[#ff5500] blur-xl opacity-60"></span>
@@ -325,16 +325,19 @@ const MarketingROICalculator = () => {
               <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-[#ff8040] to-[#ff5500]"></span>
             </span>
           </h2>
-          
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl md:hidden font-normal leading-relaxed text-white mb-5">
+            Berechnen Sie Ihren Marketing-ROI und Ihr Wachstumspotenzial
+          </h2>
+
           <p className="text-base text-white leading-relaxed max-w-3xl mx-auto">
             Erfahren Sie in wenigen Sekunden, wie viel Geld und Zeit Sie durch ineffizientes Marketing verlieren und welches Umsatzpotenzial Sie durch eine Zusammenarbeit mit uns heben können.
           </p>
         </motion.div>
-            
+
         {/* Rechner und Ergebnisbereich - kompakter Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 mt-10 relative z-30">
           {/* Eingabebereich - kompakter */}
-          <motion.div 
+          <motion.div
             ref={calculatorRef}
             className="relative"
             initial={{ opacity: 0, x: -40 }}
@@ -345,12 +348,12 @@ const MarketingROICalculator = () => {
             <div className="relative backdrop-blur-md bg-white/[0.02] border border-white/[0.08] rounded-2xl p-6 lg:p-7 shadow-2xl">
               {/* Glassmorphism inner glow */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none"></div>
-              
+
               <div className="relative z-10">
                 <h3 className="text-xl lg:text-2xl font-semibold text-white mb-6 flex items-center">
                   Ihr aktueller Status
                 </h3>
-                
+
                 <div className="space-y-6">
                   {/* Leads pro Monat */}
                   <div className="space-y-3">
@@ -414,7 +417,7 @@ const MarketingROICalculator = () => {
                         onChange={(e) => setAbschlussquote(parseFloat(e.target.value))}
                         className="flex-1 h-2 bg-white/10 rounded-lg appearance-none cursor-pointer slider"
                         style={{
-                          background: `linear-gradient(to right, #ff5500 0%, #ff8040 ${(abschlussquote/20)*100}%, rgba(255,255,255,0.1) ${(abschlussquote/20)*100}%, rgba(255,255,255,0.1) 100%)`
+                          background: `linear-gradient(to right, #ff5500 0%, #ff8040 ${(abschlussquote / 20) * 100}%, rgba(255,255,255,0.1) ${(abschlussquote / 20) * 100}%, rgba(255,255,255,0.1) 100%)`
                         }}
                       />
                       <input
@@ -462,7 +465,7 @@ const MarketingROICalculator = () => {
                         onChange={(e) => setStundenProWoche(parseInt(e.target.value))}
                         className="flex-1 h-2 bg-white/10 rounded-lg appearance-none cursor-pointer slider"
                         style={{
-                          background: `linear-gradient(to right, #ff5500 0%, #ff8040 ${(stundenProWoche/40)*100}%, rgba(255,255,255,0.1) ${(stundenProWoche/40)*100}%, rgba(255,255,255,0.1) 100%)`
+                          background: `linear-gradient(to right, #ff5500 0%, #ff8040 ${(stundenProWoche / 40) * 100}%, rgba(255,255,255,0.1) ${(stundenProWoche / 40) * 100}%, rgba(255,255,255,0.1) 100%)`
                         }}
                       />
                       <input
@@ -476,7 +479,7 @@ const MarketingROICalculator = () => {
                       <span className="text-white/70">h</span>
                     </div>
                   </div>
-                  
+
                   {/* Berechnen-Button - kompakter */}
                   <div className="mt-8 text-center">
                     <button
@@ -499,7 +502,7 @@ const MarketingROICalculator = () => {
                       }}
                       className="relative w-full px-6 py-3 btn-orange-glow"
                     >
-                      <div 
+                      <div
                         style={{
                           position: 'absolute',
                           inset: '0',
@@ -524,14 +527,14 @@ const MarketingROICalculator = () => {
                       )}
                     </button>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
           </motion.div>
 
           {/* Ergebnisbereich - kompakter */}
-          <motion.div 
+          <motion.div
             ref={resultsRef}
             className="relative h-full flex flex-col justify-center z-40"
             initial={{ opacity: 0, x: 40 }}
@@ -629,7 +632,7 @@ const MarketingROICalculator = () => {
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-center">
                       <p className="text-white/90 text-sm lg:text-base leading-relaxed">
-                        <strong>Das bedeutet:</strong> Für jeden Euro, den Sie in unsere Zusammenarbeit investieren, 
+                        <strong>Das bedeutet:</strong> Für jeden Euro, den Sie in unsere Zusammenarbeit investieren,
                         erhalten Sie voraussichtlich <span className="text-white font-bold underline decoration-orange-500/50 decoration-2 underline-offset-2">{roiDaten.faktor.toFixed(1)} Euro</span> zurück!
                       </p>
                     </div>
@@ -690,7 +693,7 @@ const MarketingROICalculator = () => {
               }}
               className="relative px-8 py-3 lg:px-10 lg:py-4 btn-orange-glow"
             >
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   inset: '0',

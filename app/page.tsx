@@ -26,6 +26,9 @@ import NextMove from '@/components/NextMove';
 import BusinessSection from '@/components/BusinessSection';
 import Loader from '@/components/Loader';
 import ScrollToTop from '@/components/ScrollToTop';
+import Image from 'next/image';
+import { MovingLogos } from '@/components/ui/moving-cards';
+import { SmoothScroll } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nextmove-digital.de'),
@@ -93,13 +96,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+
+      {/* <SmoothScroll /> */}
+
       {/* Global Video Background - visible behind Header and Hero */}
-      <div className="md:block brightness-75 bg-black hidden">
+      <div className="md:b lock brightness-75 bg-black hidden">
         <VideoBackground />
       </div>
-
-      <div className="!fixed top-0 left-0 bg-red-50">sdfdsfdsf</div>
-
 
       <JsonLd data={schemas.enhancedFaqPage()} id="faq-page" />
 
@@ -148,69 +151,78 @@ export default function Home() {
         `}
       </Script>
 
-      <Header />
+      <div className="">
 
-      <main className="relative flex min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
-        {/* Hero Section - erster Inhalt nach Header */}
-        <div className="relative ">
-          <Hero />
-        </div>
+        <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} />
 
-        <FailureReasons />
-        <BusinessSection />
+        <Header />
+        <main className="relative flex min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
+          {/* Hero Section - erster Inhalt nach Header */}
+          <div className="relative den">
+            <Hero />
+          </div>
+        </main >
+      </div>
+
+      <div className="w-full mt-10">
+        <MovingLogos />
+      </div>
 
 
-        {/* Übergang zwischen PainPoints und Solutions */}
-        <div className="relative">
-          <PainPoints />
-          <TestimonialVideo />
-          {/* Solutions enthält intern ein H1-Element in der Sticky-Überschrift. Das wird durch H2 ersetzt, um nur eine H1 auf der Seite zu haben. */}
-          <Solutions />
-        </div>
-        <AdsDesign />
-        {/* <FlipWebsites /> */}
-        <div className="w-full bg-black text-white">
-          <section className="relative mx-auto flex md:py-20 py-12 max-w-7xl flex-col items-center justify-center px-4 text-center">
-            <div className="relative z-10 flex flex-col items-center">
-              <span className="mb-6 inline-flex rounded-full bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em]">
-                Unsere Websites
-              </span>
+      <FailureReasons />
+      <BusinessSection />
 
-              <h1 className="text-4xl font-extrabold !leading-tight sm:text-5xl md:text-7xl">
-                Mehr{" "}
-                <span className="text-orange-500">
-                  Anfragen
-                </span>{" "}
-                durch unsere individuell
-                selbstentwickelte Webseite
-              </h1>
 
-              <p className="mt-6 max-w-3xl text-sm sm:text-base text-neutral-200">
-                Mit Features, die gezielt Interessenten für Immobilien gewinnen:
-                verkaufspsychologischer Aufbau, Premium-Design, SEO-Optimierung,
-                responsives Design und ein eigener Chatbot, der nicht nur Fragen
-                beantwortet, sondern auch verkauft und neue Leads generiert.
-              </p>
+      {/* Übergang zwischen PainPoints und Solutions */}
+      <div className="relative">
+        <PainPoints />
+        <TestimonialVideo />
+        {/* Solutions enthält intern ein H1-Element in der Sticky-Überschrift. Das wird durch H2 ersetzt, um nur eine H1 auf der Seite zu haben. */}
+        <Solutions />
+      </div>
+      <AdsDesign />
+      {/* <FlipWebsites /> */}
+      <div className="w-full bg-black text-white">
+        <section className="relative mx-auto flex md:py-20 py-12 max-w-7xl flex-col items-center justify-center px-4 text-center">
+          <div className="relative z-10 flex flex-col items-center">
+            <span className="mb-6 inline-flex rounded-full bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em]">
+              Unsere Websites
+            </span>
 
-              <button
-                type="button"
-                className="mt-10 rounded-full bg-orange-500 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black shadow-lg transition hover:bg-orange-400"
-              >
-                Webseite kostenlos anfragen
-              </button>
-            </div>
-          </section>
-        </div>
-        <CaseStudySection />
-        <NextMove />
-        {/* <Team /> */}
-        <Timeline />
-        <WhyUs />
-        <CTA />
-        <CalendlyWidget />
-        <Questions />
-        <Footer />
-      </main>
+            <h1 className="text-4xl font-extrabold !leading-tight sm:text-5xl md:text-7xl">
+              Mehr{" "}
+              <span className="text-orange-500">
+                Anfragen
+              </span>{" "}
+              durch unsere individuell
+              selbstentwickelte Webseite
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-sm sm:text-base text-neutral-200">
+              Mit Features, die gezielt Interessenten für Immobilien gewinnen:
+              verkaufspsychologischer Aufbau, Premium-Design, SEO-Optimierung,
+              responsives Design und ein eigener Chatbot, der nicht nur Fragen
+              beantwortet, sondern auch verkauft und neue Leads generiert.
+            </p>
+
+            <button
+              type="button"
+              className="mt-10 rounded-full bg-orange-500 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black shadow-lg transition hover:bg-orange-400"
+            >
+              Webseite kostenlos anfragen
+            </button>
+          </div>
+        </section>
+      </div>
+      <CaseStudySection />
+      <NextMove />
+      {/* <Team /> */}
+      <Timeline />
+      <WhyUs />
+      <CTA />
+      <CalendlyWidget />
+      <Questions />
+      <Footer />
     </>
   );
 }

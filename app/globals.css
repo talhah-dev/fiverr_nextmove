@@ -476,3 +476,18 @@ a[href^="#"] {
 .gif-loading {
   animation: gif-fade-in 0.6s ease-out forwards;
 }
+
+
+
+@layer base {}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
