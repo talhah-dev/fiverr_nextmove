@@ -16,11 +16,24 @@ const menuItems = [
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    const handleScroll = () => {
+      const y = window.scrollY;
+
+      // for width change
+      setIsScrolled(y > 30);
+
+      // for hiding header after 200px scroll
+      setIsHidden(y > 2500);
+    };
+
     window.addEventListener("scroll", handleScroll);
+    // run once on mount (in case user reloads mid-scroll)
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -40,12 +53,17 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 mt-5 left-0 w-full z-[100] transition-all duration-300",
-        isScrolled ? "py-2 backdrop-blu r-xl bg- black/40 shado w-lg" : "py-4 bg-transparent"
+        "fixed top-0 left-0 w-full z-[100] px-3 md:px-0 py-2 transition-all duration-300 mt-3",
+        // when hidden → slide up & fade out
+        isHidden && "-translate-y-full opacity-0"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-
+      <div
+        className={cn(
+          "mx-auto md:pl-8 px-4 flex items-center justify-between bg-white/20 backdrop-blur-3xl rounded-full py-4 transition-all duration-300",
+          isScrolled ? "max-w-7xl" : "max-w-5xl"
+        )}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
@@ -67,7 +85,7 @@ export const Header = () => {
               className="text-white/90 hover:text-white transition relative group text-sm tracking-wide"
             >
               {item.name}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-[#ff8040] to-[#ff5500] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-[#ff8040] to-[#ff5500] group-hover:w-full transition-all duration-300" />
             </button>
           ))}
         </nav>
@@ -75,7 +93,7 @@ export const Header = () => {
         {/* Desktop CTA */}
         <button
           onClick={handleCTA}
-          className="hidden lg:block px-5 py-2 rounded-lg text-sm font-semibold uppercase tracking-wide 
+          className="hidden lg:block px-5 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide 
                      bg-gradient-to-r from-[#ff8040] to-[#ff5500] text-white shadow-lg hover:scale-105 
                      transition-transform"
         >

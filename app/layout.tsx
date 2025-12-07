@@ -10,6 +10,7 @@ import { Suspense } from 'react';
 import Analytics from './analytics';
 import Loader from '@/components/Loader';
 import ScrollToTop from '@/components/ScrollToTop';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: {
@@ -301,8 +302,7 @@ export default function RootLayout({
         </Suspense>
         <Loader />
         <ScrollToTop />
-
-
+        <Header />
         {/* Mobile Scroll Optimizer */}
         <MobileScrollOptimizer />
         {/* Scroll Position Manager */}

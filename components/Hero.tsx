@@ -168,25 +168,13 @@ const Hero = () => {
 
         {/* RIGHT: IMAGE / VISUAL CARD */}
         <div className="relative mx-auto h-[320px] w-full max-w-full sm:h-[380px] lg:h-[40rem]">
-          {/* glass card behind image */}
-          <div className="absolute inset-0 rounded-3xl border border-white/20 bg-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl" />
-
-          {/* main hero image */}
-          <div className="relative m-4 h-[calc(100%-2rem)] overflow-hidden rounded-2xl border border-white/10">
-            <Image
-              src="/herobg.jpeg"
-              alt="Kapitalanlage Immobilien Skyline"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 380px, 80vw"
-            />
-            {/* subtle orange overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            {/* small label */}
-            <div className="absolute bottom-4 left-4 rounded-full bg-black/70 px-4 py-1 text-xs font-medium uppercase tracking-[0.18em] text-white/90">
-              Qualifizierte Immobilien-Interessenten
-            </div>
-          </div>
+          <Image
+            src="/ball-orange.png"
+            alt="Kapitalanlage Immobilien Skyline"
+            width={700}
+            height={700}
+            className="object-cover animate-[spin_30s_linear_infinite]"
+          />
         </div>
       </div>
 

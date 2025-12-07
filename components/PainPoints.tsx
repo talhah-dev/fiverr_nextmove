@@ -9,6 +9,7 @@ import {
   BsClock,
   BsEyeSlash,
 } from "react-icons/bs";
+import Image from "next/image";
 
 const PainPoints = () => {
   const painPoints = [
@@ -82,6 +83,7 @@ const PainPoints = () => {
 
   return (
     <section className="relative overflow-hidden bg-white">
+      <Image src={"/bgLines.svg"} width={1500} height={1000} alt="img" className="w-full object-cover absolute top-0 left-0 opacity-10 brightness-0" />
       <div className="pointer-events-none absolute inset-0">
         <svg
           className="absolute right-[-10%] top-[-10%] h-72 w-72 blur-3xl opacity-40"
@@ -147,7 +149,7 @@ const PainPoints = () => {
                              hover:border-orange-200 hover:shadow-[0_16px_40px_rgba(15,23,42,0.08)] 
                              sm:p-6 lg:p-7"
                 >
-                  <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:gap-4">
                     <div className="relative flex-shrink-0">
                       <div
                         className="flex h-10 w-10 items-center justify-center rounded-xl 
@@ -165,10 +167,10 @@ const PainPoints = () => {
                   <p className="flex-grow text-sm leading-relaxed text-slate-600 sm:text-base">
                     {point.description}
                   </p>
-
+                  {/* 
                   <div className="mt-4 border-t border-slate-200 pt-3 sm:mt-5 sm:pt-4">
                     <div className="h-[3px] w-10 rounded-full bg-gradient-to-r from-[#ff5500] to-[#ff8040] opacity-80" />
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             );
