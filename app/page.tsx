@@ -157,7 +157,7 @@ export default function Home() {
 
         {/* <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} /> */}
 
-        <main className="relative flex min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
+        <main className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
           {/* Hero Section - erster Inhalt nach Header */}
           <div className="relative den">
             <Hero />

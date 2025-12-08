@@ -167,7 +167,7 @@ const Hero = () => {
         </div>
 
         {/* RIGHT: IMAGE / VISUAL CARD */}
-        <div className="relative mx-auto h-[320px] w-full max-w-full sm:h-[380px] lg:h-[40rem]">
+        <div className="relative mx-auto  w-full max-w-full lg:h-[40rem]">
           <Image
             src="/ball-orange.png"
             alt="Kapitalanlage Immobilien Skyline"

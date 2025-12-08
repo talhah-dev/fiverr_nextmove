@@ -196,7 +196,7 @@ const Solutions = memo(() => {
       {/* Header Section */}
       <div className="relative min-h-[60vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center">
         <LampContainer>
-          <div className="mt-8 sm:mt-16 md:mt-24 lg:mt-36">
+          <div className="mt-40 sm:mt-16 md:mt-24 lg:mt-36">
             <motion.h2
               initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -234,7 +234,7 @@ const Solutions = memo(() => {
       </div>
 
       {/* Solutions Grid - Modernes 2-Spalten Card Layout (breiter) */}
-      <div className="relative z-20 pb-20 pt-8 -mt-8 sm:-mt-16 md:-mt-24 lg:-mt-80">
+      <div className="relative z-20 pb-20 pt-8 -mt-8 sm:-mt-16 md:-mt-24 lg:-mt-40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8">
             {solutionsData.map((solution, index) => (
