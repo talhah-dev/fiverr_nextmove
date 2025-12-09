@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   },
   description: 'Nextmove Digital generiert qualifizierte Leads für Immobilienmakler und Finanzberater in Deutschland, Österreich und der Schweiz mit nachweisbarem ROI. KI-gestützte Vertriebsstrategien und digitales Marketing für mehr Kunden und Umsatz.',
   keywords: [
+    // bestehende Keywords
     'Immobilien Leads Deutschland',
     'Immobilien Leads Österreich',
     'Immobilien Leads Schweiz',
@@ -32,7 +33,39 @@ export const metadata: Metadata = {
     'Finanzberater Leads Deutschland',
     'Digitales Marketing Immobilienmakler',
     'Qualifizierte Immobilien Leads',
-    'Immobilien Akquise Deutschland'
+    'Immobilien Akquise Deutschland',
+
+    // zusätzliche Haupt- und Longtail-Keywords
+    'Immobilien Leads',
+    'Immobilien Leads generieren',
+    'Leads für Immobilien',
+    'Leads für Immobilienmakler',
+    'Immobilien Leads kaufen',
+    'Immobilien Leads Agentur',
+    'Immobilien Leads vorqualifiziert',
+    'Immobilien Leads Hamburg',
+    'Immobilien Leads Berlin',
+    'Immobilien Leads München',
+
+    // Finanzberater-Keywords
+    'Leads für Finanzberater',
+    'Finanzberater Leads',
+    'Leads für Finanzdienstleister',
+    'Neukunden gewinnen als Finanzberater',
+    'Finanzberater Online Leads',
+
+    // Leistungs-/Problem-Keywords
+    'Leadgenerierung Immobilien',
+    'Leadgenerierung Immobilienmakler',
+    'Social Media Marketing Immobilienmakler',
+    'Performance Marketing Immobilien',
+    'Qualifizierte Leads Immobilien',
+    'Leads ohne Kaltakquise',
+
+    // Brand-Keywords
+    'Nextmove Digital',
+    'Nextmove Digital Immobilien Leads',
+    'Nextmove Digital Hamburg',
   ],
   authors: [{ name: 'Ali Alizadah', url: 'https://nextmove-digital.de/team/ali-alizadah' }],
   creator: 'Nextmove Digital',

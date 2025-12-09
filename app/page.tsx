@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   description:
     'Qualifizierte Leadgenerierung für Immobilienmakler und Finanzberater in Deutschland, Österreich und der Schweiz. Performance Marketing mit nachweisbarem ROI. Über 500 zufriedene Kunden.',
   keywords: [
+    // bestehende Keywords
     'Immobilien Leads Deutschland',
     'Immobilien Leads Österreich',
     'Immobilien Leads Schweiz',
@@ -45,6 +46,38 @@ export const metadata: Metadata = {
     'Immobilien Akquise',
     'Performance Marketing Immobilienmakler',
     'Digitales Marketing Finanzdienstleister',
+
+    // zusätzliche Haupt- und Longtail-Keywords
+    'Immobilien Leads',
+    'Immobilien Leads generieren',
+    'Leads für Immobilien',
+    'Leads für Immobilienmakler',
+    'Immobilien Leads kaufen',
+    'Immobilien Leads Agentur',
+    'Immobilien Leads vorqualifiziert',
+    'Immobilien Leads Hamburg',
+    'Immobilien Leads Berlin',
+    'Immobilien Leads München',
+
+    // Finanzberater-Keywords
+    'Leads für Finanzberater',
+    'Finanzberater Leads',
+    'Leads für Finanzdienstleister',
+    'Neukunden gewinnen als Finanzberater',
+    'Finanzberater Online Leads',
+
+    // Leistungs-/Problem-Keywords
+    'Leadgenerierung Immobilien',
+    'Leadgenerierung Immobilienmakler',
+    'Social Media Marketing Immobilienmakler',
+    'Performance Marketing Immobilien',
+    'Qualifizierte Leads Immobilien',
+    'Leads ohne Kaltakquise',
+
+    // Brand-Keywords
+    'Nextmove Digital',
+    'Nextmove Digital Immobilien Leads',
+    'Nextmove Digital Hamburg',
   ],
   alternates: {
     canonical: 'https://nextmove-digital.de/',
@@ -83,7 +116,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: {
       index: true,
-      follow: true
+      follow: true,
     },
   },
 };
@@ -91,7 +124,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-
       {/* <SmoothScroll /> */}
 
       {/* Global Video Background - visible behind Header and Hero */}
@@ -147,32 +179,44 @@ export default function Home() {
       </Script>
 
       <div className="">
-
         <div className="">
-          <Image src={"/bg.png"} width={2000} height={2000} className='w-full opacity-90 h-[80vh] blurxl object-cover absolute top-0 left-0' alt='img' />
+          <Image
+            src={'/bg.png'}
+            width={2000}
+            height={2000}
+            className="w-full opacity-90 h-[80vh] blurxl object-cover absolute top-0 left-0"
+            alt="img"
+          />
         </div>
         <div className="">
-          <Image src={"/bgLines.svg"} width={2000} height={2000} className='w-full min-h-screen opacity-20 object-cover absolute top-0 left-0' alt='img' />
+          <Image
+            src={'/bgLines.svg'}
+            width={2000}
+            height={2000}
+            className="w-full min-h-screen opacity-20 object-cover absolute top-0 left-0"
+            alt="img"
+          />
         </div>
 
         {/* <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} /> */}
 
-        <main className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32" style={{ zIndex: 5 }}>
+        <main
+          className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32"
+          style={{ zIndex: 5 }}
+        >
           {/* Hero Section - erster Inhalt nach Header */}
           <div className="relative den">
             <Hero />
           </div>
-        </main >
+        </main>
       </div>
 
       <div className="w-full mt-10">
         <MovingLogos />
       </div>
 
-
       <FailureReasons />
       <BusinessSection />
-
 
       {/* Übergang zwischen PainPoints und Solutions */}
       <div className="relative">
@@ -191,10 +235,10 @@ export default function Home() {
             </span>
 
             <h1 className="text-4xl font-extrabold !leading-tight sm:text-5xl md:text-7xl">
-              Mehr{" "}
+              Mehr{' '}
               <span className="text-orange-500">
                 Anfragen
-              </span>{" "}
+              </span>{' '}
               durch unsere individuell
               selbstentwickelte Webseite
             </h1>
