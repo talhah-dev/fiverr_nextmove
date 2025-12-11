@@ -141,15 +141,6 @@ const Hero = memo(() => {
         </div>
       </div>
 
-      {/* MOVING LOGOS SECTION */}
-      <div className="w-full relative z-20 pb-6 sm:pb-8 md:pb-10">
-        {/* Dunkler Schatten-Übergang für weiße Logos */}
-        <div className="absolute inset-x-0 -top-16 sm:-top-20 md:-top-24 bottom-0 bg-gradient-to-t from-black via-black/95 via-60% to-transparent pointer-events-none" />
-        <div className="relative z-10 pt-4 sm:pt-6 md:pt-8">
-          <MovingLogos />
-        </div>
-      </div>
-
       {/* Hidden SEO Links */}
       <div className="sr-only">
         <a href="/unsere-loesung">Unsere Lösung</a>

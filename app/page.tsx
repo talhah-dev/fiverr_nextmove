@@ -127,7 +127,7 @@ export default function Home() {
       {/* <SmoothScroll /> */}
 
       {/* Global Video Background - visible behind Header and Hero */}
-      <div className="md:b lock brightness-75 bg-black hidde n">
+      <div className="md:block brightness-75 bg-black hidden">
         <VideoBackground />
       </div>
 
