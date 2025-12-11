@@ -127,7 +127,7 @@ export default function Home() {
       {/* <SmoothScroll /> */}
 
       {/* Global Video Background - visible behind Header and Hero */}
-      <div className="md:b lock brightness-75 bg-black hidden">
+      <div className="md:b lock brightness-75 bg-black hidde n">
         <VideoBackground />
       </div>
 
@@ -179,24 +179,7 @@ export default function Home() {
       </Script>
 
       <div className="">
-        <div className="">
-          <Image
-            src={'/bg.png'}
-            width={2000}
-            height={2000}
-            className="w-full opacity-90 h-[80vh] blurxl object-cover absolute top-0 left-0"
-            alt="img"
-          />
-        </div>
-        <div className="">
-          <Image
-            src={'/bgLines.svg'}
-            width={2000}
-            height={2000}
-            className="w-full min-h-screen opacity-20 object-cover absolute top-0 left-0"
-            alt="img"
-          />
-        </div>
+
 
         {/* <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} /> */}
 
@@ -204,8 +187,7 @@ export default function Home() {
           className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32"
           style={{ zIndex: 5 }}
         >
-          {/* Hero Section - erster Inhalt nach Header */}
-          <div className="relative den">
+          <div className="relative w-full">
             <Hero />
           </div>
         </main>
