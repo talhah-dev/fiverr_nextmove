@@ -59,7 +59,7 @@ const Hero = memo(() => {
       <div className="absolute bottom-1/3 left-1/3 h-60 md:h-80 w-60 md:w-80 rounded-full bg-orange-500/5 filter blur-2xl md:blur-3xl animate-pulse-orange -z-10 pointer-events-none" style={{ animationDelay: '1s' }}></div>
 
       {/* Main Content Area */}
-      <div className="px-4 mx-auto w-full max-w-7xl flex-grow flex flex-col justify-center pt-28 pb-12 sm:pt-32">
+      <div className="px-4 mx-auto w-full max-w-7xl flex-grow flex flex-col justify-center pb-12 sm:pt-32">
         <div className="w-full max-w-5xl mx-auto">
           <div className="w-full text-center lg:text-left">
 
@@ -127,7 +127,7 @@ const Hero = memo(() => {
               </div>
 
               {/* FlipWords */}
-              <div className="text-xl sm:text-2xl lg:text-3xl flex justify-center lg:justify-start items-center pb-4">
+              <div className="text-xl sm:text-2xl lg:text-3xl flex justify-center md:block hidden lg:justify-start items-center pb-4">
                 <span className="text-white font-light mr-2">Mehr</span>
                 <FlipWords
                   words={flipWords}
