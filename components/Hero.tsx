@@ -29,7 +29,7 @@ const Hero = memo(() => {
     { id: 1, name: 'Azim Choudhury', designation: 'CD Immobilien Portfolio', image: '/azimchoudry.webp' },
     { id: 2, name: 'Michael Schürdt', designation: 'HMS-Finance Consulting', image: '/P1039493.webp' },
     { id: 3, name: 'Jens Freyer', designation: 'Freyer Immobilien', image: '/P1039309.webp' },
-    // { id: 4, name: 'Moritz Graf von Bernstorff', designation: 'Graf Bernstorff Consulting', image: '/moritz-graf.webp' },
+    { id: 4, name: 'Moritz Graf von Bernstorff', designation: 'Graf Bernstorff Consulting', image: '/moritz-graf.webp' },
     { id: 5, name: 'Jacek', designation: 'MSH Immobilien', image: '/profilbild1.webp' },
     { id: 6, name: 'Alexander Kedro', designation: 'Kedro Immobilien', image: '/kedro.webp' },
     { id: 7, name: 'Simon Hauer', designation: 'Finanzhaus Südbaden', image: '/Simon.webp' },

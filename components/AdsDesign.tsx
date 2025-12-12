@@ -57,8 +57,8 @@ const AdsDesign = () => {
           aria-hidden="true"
         ></div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-20 sm:pt-24 lg:pt-28 xl:pt-32 z-10">
-          <div className="max-w-6xl mx-auto text-center mb-6 lg:mb-8 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative py-20 sm:py-24 lg:py-28 xl:py-32 z-10">
+          <div className="max-w-6xl mx-auto text-center mb-16 sm:mb-20 lg:mb-24 relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-white leading-[0.9] tracking-tight relative z-60 mb-4">
               Ads, die{" "}
               <div className="relative inline-block">

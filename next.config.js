@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Server-mode für Scalingo (nicht Static Export)
-  output: 'standalone',
   reactStrictMode: false,
   images: {
     unoptimized: false,  // Image Optimization API aktiviert für Server

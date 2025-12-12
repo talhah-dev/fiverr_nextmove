@@ -8,9 +8,9 @@ import MobileScrollOptimizer from '@/components/MobileScrollOptimizer';
 import CookieBanner from '@/components/CookieBanner';
 import { Suspense } from 'react';
 import Analytics from './analytics';
-import Loader from '@/components/Loader';
+import { Header } from '@/components/Header';
 import ScrollToTop from '@/components/ScrollToTop';
-import Header from '@/components/Header';
+import Loader from '@/components/Loader';
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   },
   description: 'Nextmove Digital generiert qualifizierte Leads für Immobilienmakler und Finanzberater in Deutschland, Österreich und der Schweiz mit nachweisbarem ROI. KI-gestützte Vertriebsstrategien und digitales Marketing für mehr Kunden und Umsatz.',
   keywords: [
-    // bestehende Keywords
     'Immobilien Leads Deutschland',
     'Immobilien Leads Österreich',
     'Immobilien Leads Schweiz',
@@ -33,39 +32,7 @@ export const metadata: Metadata = {
     'Finanzberater Leads Deutschland',
     'Digitales Marketing Immobilienmakler',
     'Qualifizierte Immobilien Leads',
-    'Immobilien Akquise Deutschland',
-
-    // zusätzliche Haupt- und Longtail-Keywords
-    'Immobilien Leads',
-    'Immobilien Leads generieren',
-    'Leads für Immobilien',
-    'Leads für Immobilienmakler',
-    'Immobilien Leads kaufen',
-    'Immobilien Leads Agentur',
-    'Immobilien Leads vorqualifiziert',
-    'Immobilien Leads Hamburg',
-    'Immobilien Leads Berlin',
-    'Immobilien Leads München',
-
-    // Finanzberater-Keywords
-    'Leads für Finanzberater',
-    'Finanzberater Leads',
-    'Leads für Finanzdienstleister',
-    'Neukunden gewinnen als Finanzberater',
-    'Finanzberater Online Leads',
-
-    // Leistungs-/Problem-Keywords
-    'Leadgenerierung Immobilien',
-    'Leadgenerierung Immobilienmakler',
-    'Social Media Marketing Immobilienmakler',
-    'Performance Marketing Immobilien',
-    'Qualifizierte Leads Immobilien',
-    'Leads ohne Kaltakquise',
-
-    // Brand-Keywords
-    'Nextmove Digital',
-    'Nextmove Digital Immobilien Leads',
-    'Nextmove Digital Hamburg',
+    'Immobilien Akquise Deutschland'
   ],
   authors: [{ name: 'Ali Alizadah', url: 'https://nextmove-digital.de/team/ali-alizadah' }],
   creator: 'Nextmove Digital',
@@ -295,7 +262,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'Nextmove Digital',
+                name: 'Nextmove Digital',
               image: 'https://nextmove-digital.de/logo-nextmove.jpeg',
               '@id': 'https://nextmove-digital.de',
               url: 'https://nextmove-digital.de',
@@ -334,18 +301,17 @@ export default function RootLayout({
           <Analytics />
         </Suspense>
         <Loader />
-        <ScrollToTop />
-        <Header />
         {/* Mobile Scroll Optimizer */}
         <MobileScrollOptimizer />
         {/* Scroll Position Manager */}
         <ScrollPositionManager />
         {/* Orangefarbener Custom Cursor als Client-Komponente */}
         <OrangeCursor />
+        <ScrollToTop />
         <ScrollProgress className="bg-gradient-to-r from-[#ff5500] via-[#ff8040] to-[#ff5500]" />
-        <div className="overflow-x-hidden max-w-full">
-          {children}
-        </div>
+        {/* Header HIER im Layout - außerhalb aller Container für korrektes fixed positioning */}
+        <Header />
+        {children}
         {/* Cookie Banner */}
         <CookieBanner />
       </body>

@@ -1,15 +1,13 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/Header';
 import Hero from '@/components/Hero';
 import VideoBackground from '@/components/VideoBackground';
 import Script from 'next/script';
 import { JsonLd, schemas } from '@/components/SEO/JsonLd';
 
-export const preferredRegion = ['fra1', 'dub1', 'arn1', 'cdg1'];
-
-// Static imports for critical components (no dynamic loading)
+// Static imports
 import PainPoints from '@/components/PainPoints';
 import Solutions from '@/components/Solutions';
+import FlipWebsites from '@/components/unsere-loesung/flip-websites';
 import FailureReasons from '@/components/FailureReasons';
 import TestimonialVideo from '@/components/TestimonialVideo';
 import AdsDesign from '@/components/AdsDesign';
@@ -22,8 +20,8 @@ import Questions from '@/components/Questions';
 import Footer from '@/components/Footer';
 import NextMove from '@/components/NextMove';
 import BusinessSection from '@/components/BusinessSection';
-import { MovingLogos } from '@/components/ui/moving-cards';
-import Image from 'next/image';
+
+export const preferredRegion = ['fra1', 'dub1', 'arn1', 'cdg1'];
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nextmove-digital.de'),
@@ -124,13 +122,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* <SmoothScroll /> */}
-
+      {/* 
+         VideoBackground ist fixed auf z-0. 
+         Header ist normalerweise fixed/sticky auf hohem z-index.
+      */}
       <VideoBackground />
 
       <JsonLd data={schemas.enhancedFaqPage()} id="faq-page" />
-
       <Script id="schema-org" type="application/ld+json">
+        {/* ... Dein Schema Code hier lassen ... */}
         {`
           {
             "@context": "https://schema.org",
@@ -149,40 +149,24 @@ export default function Home() {
             "telephone": "+491795914490",
             "email": "info@nextmove-digital.de",
             "priceRange": "€€",
-            "openingHours": "Mo-Fr 09:00-18:00",
-            "sameAs": [
-              "https://www.linkedin.com/company/nextmove-consulting",
-              "https://www.instagram.com/nextmove_consulting",
-              "https://www.facebook.com/nextmove-digital"
-            ],
-            "serviceArea": {
-              "@type": "GeoCircle",
-              "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 53.5511,
-                "longitude": 9.9937
-              },
-              "geoRadius": "1000"
-            },
-            "knowsAbout": [
-              "Lead-Generierung für Finanzberater",
-              "Performance Marketing",
-              "Social Media Ads",
-              "Organische Leads ohne Google Ads",
-              "Digitales Marketing für Finanzbranche"
-            ]
+            "openingHours": "Mo-Fr 09:00-18:00"
           }
         `}
       </Script>
 
+      {/*
+         WICHTIG: 'relative z-10' hebt den Inhalt über das Video (z-0).
+         'bg-transparent' ist wichtig, damit das Video durchscheint.
+         Header ist jetzt in layout.tsx für korrektes fixed positioning.
+      */}
+      <main className="relative z-10 flex min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32">
 
-      <main
-        className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32"
-      >
+        {/* Hero Section */}
         <div className="relative w-full">
           <Hero />
         </div>
 
+        {/* Restlicher Content - Hier setzen wir Hintergründe, falls nötig, oder lassen transparent */}
         <div className="relative z-10 bg-[#000000]"> {/* Ab hier wieder schwarzer Hintergrund für den Rest der Seite */}
           <FailureReasons />
           <BusinessSection />
@@ -233,8 +217,7 @@ export default function Home() {
           <Questions />
           <Footer />
         </div>
-      </main >
-
+      </main>
     </>
   );
 }
