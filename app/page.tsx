@@ -126,10 +126,7 @@ export default function Home() {
     <>
       {/* <SmoothScroll /> */}
 
-      {/* Global Video Background - visible behind Header and Hero */}
-      <div className="md:block brightness-75 bg-black hidden">
-        <VideoBackground />
-      </div>
+      <VideoBackground />
 
       <JsonLd data={schemas.enhancedFaqPage()} id="faq-page" />
 
@@ -178,78 +175,66 @@ export default function Home() {
         `}
       </Script>
 
-      <div className="">
 
+      <main
+        className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32"
+      >
+        <div className="relative w-full">
+          <Hero />
+        </div>
 
-        {/* <Image src={"/herobg.jpeg"} className='w-full absolute top-0 left-0 h-screen brightness-[.3]' alt='img' width={1200} height={1200} /> */}
-
-        <main
-          className="relative flex xl:min-h-screen flex-col bg-transparent overflow-x-hidden max-w-full pt-24 sm:pt-28 lg:pt-32"
-          style={{ zIndex: 5 }}
-        >
-          <div className="relative w-full">
-            <Hero />
+        <div className="relative z-10 bg-[#000000]"> {/* Ab hier wieder schwarzer Hintergrund für den Rest der Seite */}
+          <FailureReasons />
+          <BusinessSection />
+          <div className="relative">
+            <PainPoints />
+            <TestimonialVideo />
+            <Solutions />
           </div>
-        </main>
-      </div>
+          <AdsDesign />
+          <div className="w-full bg-black text-white">
+            <section className="relative mx-auto flex md:py-20 py-12 max-w-7xl flex-col items-center justify-center px-4 text-center">
+              <div className="relative z-10 flex flex-col items-center">
+                <span className="mb-6 inline-flex rounded-full bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em]">
+                  Unsere Websites
+                </span>
 
-      <div className="w-full mt-10">
-        <MovingLogos />
-      </div>
+                <h1 className="text-4xl font-extrabold !leading-tight sm:text-5xl md:text-7xl">
+                  Mehr{' '}
+                  <span className="text-orange-500">
+                    Anfragen
+                  </span>{' '}
+                  durch unsere individuell
+                  selbstentwickelte Webseite
+                </h1>
 
-      <FailureReasons />
-      <BusinessSection />
+                <p className="mt-6 max-w-3xl text-sm sm:text-base text-neutral-200">
+                  Mit Features, die gezielt Interessenten für Immobilien gewinnen:
+                  verkaufspsychologischer Aufbau, Premium-Design, SEO-Optimierung,
+                  responsives Design und ein eigener Chatbot, der nicht nur Fragen
+                  beantwortet, sondern auch verkauft und neue Leads generiert.
+                </p>
 
-      {/* Übergang zwischen PainPoints und Solutions */}
-      <div className="relative">
-        <PainPoints />
-        <TestimonialVideo />
-        {/* Solutions enthält intern ein H1-Element in der Sticky-Überschrift. Das wird durch H2 ersetzt, um nur eine H1 auf der Seite zu haben. */}
-        <Solutions />
-      </div>
-      <AdsDesign />
-      {/* <FlipWebsites /> */}
-      <div className="w-full bg-black text-white">
-        <section className="relative mx-auto flex md:py-20 py-12 max-w-7xl flex-col items-center justify-center px-4 text-center">
-          <div className="relative z-10 flex flex-col items-center">
-            <span className="mb-6 inline-flex rounded-full bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em]">
-              Unsere Websites
-            </span>
-
-            <h1 className="text-4xl font-extrabold !leading-tight sm:text-5xl md:text-7xl">
-              Mehr{' '}
-              <span className="text-orange-500">
-                Anfragen
-              </span>{' '}
-              durch unsere individuell
-              selbstentwickelte Webseite
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-sm sm:text-base text-neutral-200">
-              Mit Features, die gezielt Interessenten für Immobilien gewinnen:
-              verkaufspsychologischer Aufbau, Premium-Design, SEO-Optimierung,
-              responsives Design und ein eigener Chatbot, der nicht nur Fragen
-              beantwortet, sondern auch verkauft und neue Leads generiert.
-            </p>
-
-            <button
-              type="button"
-              className="mt-10 rounded-full bg-orange-500 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black shadow-lg transition hover:bg-orange-400"
-            >
-              Webseite kostenlos anfragen
-            </button>
+                <button
+                  type="button"
+                  className="mt-10 rounded-full bg-orange-500 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black shadow-lg transition hover:bg-orange-400"
+                >
+                  Webseite kostenlos anfragen
+                </button>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
-      <CaseStudySection />
-      <NextMove />
-      {/* <Team /> */}
-      <Timeline />
-      <WhyUs />
-      <CTA />
-      <CalendlyWidget />
-      <Questions />
-      <Footer />
+          <CaseStudySection />
+          <NextMove />
+          <Timeline />
+          <WhyUs />
+          <CTA />
+          <CalendlyWidget />
+          <Questions />
+          <Footer />
+        </div>
+      </main >
+
     </>
   );
 }

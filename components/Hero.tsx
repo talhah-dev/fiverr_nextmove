@@ -29,7 +29,7 @@ const Hero = memo(() => {
     { id: 1, name: 'Azim Choudhury', designation: 'CD Immobilien Portfolio', image: '/azimchoudry.webp' },
     { id: 2, name: 'Michael Schürdt', designation: 'HMS-Finance Consulting', image: '/P1039493.webp' },
     { id: 3, name: 'Jens Freyer', designation: 'Freyer Immobilien', image: '/P1039309.webp' },
-    { id: 4, name: 'Moritz Graf von Bernstorff', designation: 'Graf Bernstorff Consulting', image: '/moritz-graf.webp' },
+    // { id: 4, name: 'Moritz Graf von Bernstorff', designation: 'Graf Bernstorff Consulting', image: '/moritz-graf.webp' },
     { id: 5, name: 'Jacek', designation: 'MSH Immobilien', image: '/profilbild1.webp' },
     { id: 6, name: 'Alexander Kedro', designation: 'Kedro Immobilien', image: '/kedro.webp' },
     { id: 7, name: 'Simon Hauer', designation: 'Finanzhaus Südbaden', image: '/Simon.webp' },
@@ -59,7 +59,7 @@ const Hero = memo(() => {
       <div className="absolute bottom-1/3 left-1/3 h-60 md:h-80 w-60 md:w-80 rounded-full bg-orange-500/5 filter blur-2xl md:blur-3xl animate-pulse-orange -z-10 pointer-events-none" style={{ animationDelay: '1s' }}></div>
 
       {/* Main Content Area */}
-      <div className="px-4 mx-auto w-full max-w-7xl flex-grow flex flex-col justify-center pb-12 sm:pt-32">
+      <div className="px-4 mx-auto w-full max-w-7xl flex-grow flex flex-col justify-center pt-28 pb-12 sm:pt-32">
         <div className="w-full max-w-5xl mx-auto">
           <div className="w-full text-center lg:text-left">
 
@@ -127,7 +127,7 @@ const Hero = memo(() => {
               </div>
 
               {/* FlipWords */}
-              <div className="text-xl sm:text-2xl lg:text-3xl flex justify-center md:block hidden lg:justify-start items-center pb-4">
+              <div className="text-xl sm:text-2xl lg:text-3xl flex justify-center lg:justify-start items-center pb-4">
                 <span className="text-white font-light mr-2">Mehr</span>
                 <FlipWords
                   words={flipWords}
@@ -138,6 +138,15 @@ const Hero = memo(() => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* MOVING LOGOS SECTION */}
+      <div className="w-full relative z-20 pb-6 sm:pb-8 md:pb-10">
+        {/* Dunkler Schatten-Übergang für weiße Logos */}
+        <div className="absolute inset-x-0 -top-16 sm:-top-20 md:-top-24 bottom-0 bg-gradient-to-t from-black via-black/95 via-60% to-transparent pointer-events-none" />
+        <div className="relative z-10 pt-4 sm:pt-6 md:pt-8">
+          <MovingLogos />
         </div>
       </div>
 
